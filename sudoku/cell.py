@@ -7,7 +7,7 @@ class Cell(ABC):
     for any cell in the Sudoku structure.
     """
 
-    def __init__(self, val=0, grid_size=3):
+    def __init__(self, val: int = 0, grid_size: int = 3):
         if not isinstance(grid_size, int):
             raise TypeError("Grid size should be an integer")
 
@@ -24,29 +24,29 @@ class Cell(ABC):
 
     # Enforce these methods must exist in all derived classes
     @abstractmethod
-    def set_value(self, new_val):
+    def set_value(self, new_val: int) -> None:
         """Must be implemented by child classes to set the cell's value."""
         pass
 
     @abstractmethod
-    def clear(self):
+    def clear(self) -> None:
         """Must be implemented by child classes to clear the cell."""
         pass
 
     # Concrete method (shared implementation)
-    def get_value(self):
+    def get_value(self) -> int:
         return self._value
 
 
 class EditableSudokuCell(Cell):
     """A cell whose value can be set and cleared (e.g., user input)."""
 
-    def __init__(self, grid_size=3):
+    def __init__(self, grid_size: int = 3):
         # Calls the ABC's constructor for initialization and validation
         super().__init__(val=0, grid_size=grid_size)
 
     # Implement the abstract method: set_value
-    def set_value(self, new_val):
+    def set_value(self, new_val: int) -> None:
         """Allows updates by default, with validation."""
         if not isinstance(new_val, int):
             raise TypeError("Value should be an integer")
@@ -59,7 +59,7 @@ class EditableSudokuCell(Cell):
         self._value = new_val
 
     # Implement the abstract method: clear
-    def clear(self):
+    def clear(self) -> None:
         """Sets the cell's value to 0 (empty)."""
         self._value = 0
 
@@ -67,13 +67,13 @@ class EditableSudokuCell(Cell):
 class FixedSudokuCell(Cell):
     """A cell that is fixed and cannot be modified (e.g., puzzle clue)."""
 
-    def __init__(self, val, grid_size=3):
+    def __init__(self, val: int, grid_size: int = 3):
         # Calls the ABC's constructor for initialization and validation
         super().__init__(val, grid_size)
         # Fixed cells should not be initialized as 0, the ABC check handles this.
 
     # Implement the abstract method: set_value (Prevents update)
-    def set_value(self, new_val):
+    def set_value(self, new_val: int) -> None:
         """Override the parent method to prevent updates."""
         raise PermissionError("Cannot change a fixed cell.")
 
