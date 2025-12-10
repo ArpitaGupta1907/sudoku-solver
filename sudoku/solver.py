@@ -1,12 +1,9 @@
+from .board import SudokuBoard
+
+
 class SudokuSolver:
-    def __init__(self, board):
-        print("Hello")
+    def is_valid(self, board: SudokuBoard) -> bool:
+        ...
 
-
-    def solve(self):
-        print("Hello")
-
-    def is_valid():
-        current_num = 0
-        if current_num in row or current_num in col :
-            print("Cannot add this number as it already exists in the row.")
+    def solve(self, board: SudokuBoard) -> None:
+        ...

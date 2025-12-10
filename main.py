@@ -8,3 +8,9 @@ hardBoard = SudokuBoard(HARD_BOARD, 3)
 print(easyBoard)
 print(mediumBoard)
 print(hardBoard)
+
+solver = SudokuSolver()
+
+solver.solve(easyBoard)
+solver.solve(mediumBoard)
+solver.solve(hardBoard)
