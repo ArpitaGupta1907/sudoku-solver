@@ -107,6 +107,3 @@ class SudokuBoard:
 
         # The Cell class handles the PermissionError for Fixed cells.
         cell.clear()
-
-    def is_valid(self):
-        ...
