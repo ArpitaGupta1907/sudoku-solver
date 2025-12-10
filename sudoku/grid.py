@@ -1,10 +1,10 @@
-from .cell import FixedSudokuCell, EditableSudokuCell
+from .cell import Cell, FixedSudokuCell, EditableSudokuCell
 
 
 class SudokuGrid:
     def __init__(self, grid_size=3, grid_elements=[]):
         self._grid_size = grid_size
-        self._cells = []
+        self._cells: Cell = []
 
         if not grid_elements:
             raise ValueError("Elements cannot be empty")
@@ -30,3 +30,7 @@ class SudokuGrid:
                 current_row.append(cell)
 
             self._cells.append(current_row)
+
+    def getValue(self, row, col):
+        cell = self._cells[row][col]
+        return cell.get_value()
