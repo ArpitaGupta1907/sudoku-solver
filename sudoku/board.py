@@ -33,8 +33,49 @@ class SudokuBoard:
 
             self._cells.append(current_cells_row)
 
-        print(
-            f"SudokuBoard successfully initialized as a {self._max_dim}x{self._max_dim} puzzle.")
+    def __str__(self):
+        """
+        Defines the string representation of the SudokuBoard,
+        allowing the use of 'print(board_instance)'.
+        """
+        output_lines = []
+
+        max_dim = self._max_dim
+        grid_size = self._grid_size
+
+        # 1. Calculate the divider length
+        temp_row_width = 1  # Left '|'
+        temp_row_width += max_dim * 2  # Cells
+        # Internal and final vertical bars
+        temp_row_width += (max_dim // grid_size) * 2
+
+        # Adjust for the extra space used in the original calculation
+        # Subtract 1 for clean visual width
+        divider = "-" * (temp_row_width - 1)
+
+        output_lines.append("\n" + divider)
+
+        for r in range(max_dim):
+            row_output = "|"
+            for c in range(max_dim):
+                val = self.get_value(r, c)
+                display_val = str(val) if val != 0 else " "
+                row_output += f" {display_val}"
+
+                # Add vertical dividers after every sub-grid column
+                if (c + 1) % grid_size == 0:
+                    row_output += " |"
+
+            output_lines.append(row_output)
+
+            # Add horizontal dividers after every sub-grid row
+            if (r + 1) % grid_size == 0 and (r + 1) != max_dim:
+                output_lines.append(divider)
+
+        output_lines.append(divider + "\n")
+
+        # Join all lines with a newline character and return the single string
+        return "\n".join(output_lines)
 
     def get_value(self, row, col):
         if not (0 <= row < self._max_dim and 0 <= col < self._max_dim):
