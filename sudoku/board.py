@@ -6,7 +6,6 @@ class SudokuBoard:
         self._grid_size = board_size
         self._max_dim = board_size * board_size
 
-        # Corrected type hint
         self._cells: list[list[Cell]] = []
 
         if not elements:
@@ -44,7 +43,7 @@ class SudokuBoard:
         grid_size = self._grid_size
 
         # 1. Calculate the divider length
-        temp_row_width = 1  # Left '|'
+        temp_row_width = 2  # Left '|'
         temp_row_width += max_dim * 2  # Cells
         # Internal and final vertical bars
         temp_row_width += (max_dim // grid_size) * 2
@@ -108,3 +107,6 @@ class SudokuBoard:
 
         # The Cell class handles the PermissionError for Fixed cells.
         cell.clear()
+
+    def is_valid(self):
+        ...
