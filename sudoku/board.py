@@ -83,3 +83,28 @@ class SudokuBoard:
 
         cell = self._cells[row][col]
         return cell.get_value()
+
+    def place_number(self, row, col, num):
+        """
+        Sets the value of an editable cell. This is the solver's key writing tool.
+        """
+        if not (0 <= row < self._max_dim and 0 <= col < self._max_dim):
+            raise IndexError("Indices are out of board bounds.")
+
+        cell = self._cells[row][col]
+
+        # The Cell class handles the validation (1-9 range) and PermissionError for Fixed cells.
+        # We assume 'num' will be a valid 1-9 integer here.
+        cell.set_value(num)
+
+    def clear_number(self, row, col):
+        """
+        Clears an editable cell (sets its value to 0). Used for backtracking.
+        """
+        if not (0 <= row < self._max_dim and 0 <= col < self._max_dim):
+            raise IndexError("Indices are out of board bounds.")
+
+        cell = self._cells[row][col]
+
+        # The Cell class handles the PermissionError for Fixed cells.
+        cell.clear()
