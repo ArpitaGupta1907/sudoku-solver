@@ -41,9 +41,9 @@ class Cell(ABC):
 class EditableSudokuCell(Cell):
     """A cell whose value can be set and cleared (e.g., user input)."""
 
-    def __init__(self, val=0, grid_size=3):
+    def __init__(self, grid_size=3):
         # Calls the ABC's constructor for initialization and validation
-        super().__init__(val, grid_size)
+        super().__init__(val=0, grid_size=grid_size)
 
     # Implement the abstract method: set_value
     def set_value(self, new_val):

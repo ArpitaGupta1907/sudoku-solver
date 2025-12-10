@@ -1,1 +1,4 @@
-print("Entry point of our application")
+from sudoku import SudokuBoard, SudokuSolver
+
+sudoku = SudokuBoard()
+sudokuSolver = SudokuSolver()
