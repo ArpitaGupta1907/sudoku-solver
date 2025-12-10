@@ -1,6 +1,9 @@
-class SudokuSolver:
-    def __init__(self):
-        print("Hello")
+from .board import SudokuBoard
 
-    def solve(self):
-        print("Hello")
+
+class SudokuSolver:
+    def is_valid(self, board: SudokuBoard) -> bool:
+        ...
+
+    def solve(self, board: SudokuBoard) -> None:
+        ...
